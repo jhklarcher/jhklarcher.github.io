@@ -112,6 +112,7 @@ author:
   bio              : "Engenheiro Mecânico - UTFPR"
   location         : "Curitiba - PR"
   email            :
+  linkedin         : "jhlarcher"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
