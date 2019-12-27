@@ -1,2 +1,0 @@
-# jhklarcher.github.io
- 
