@@ -13,7 +13,7 @@ Engenheiro Mecânico formado pela Universidade Tecnológica Federal do Paraná.
 # Formação Acadêmica
 
 - Graduação (2012-2019): Engenharia Mecânica, **Universidade Tecnológica Federal do Paraná**.
-  - **TCC**: Construção e teste de um tubo de impedância para medição de isolamento. Entre os melhores de 2018 e publicado no livro de TCCs ([Soluções em Engenharia Mecânica Edição 2019](/files/livro_tccs_2019.epub)).
+  - **TCC**: [Construção e teste de um tubo de impedância para medição de isolamento](http://repositorio.roca.utfpr.edu.br/jspui/handle/1/11784). Entre os melhores de 2018 e publicado no livro de TCCs ([Soluções em Engenharia Mecânica Edição 2019](/files/livro_tccs_2019.epub)).
 
 - Intercâmbio (2012-2019): **Budapest University of Technology and Economics**.
 
