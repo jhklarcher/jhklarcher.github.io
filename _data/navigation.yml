@@ -1,7 +1,7 @@
 # main links links
 main:
-  - title: "Home"
-    url: /
+  - title: "CV"
+    url: /files/CV_JoseLarcher.pdf
 
   #- title: "Talks"
     #url: /talks/
