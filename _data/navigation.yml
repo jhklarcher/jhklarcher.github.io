@@ -2,6 +2,8 @@
 main:
   - title: "CV"
     url: /files/CV_JoseLarcher.pdf
+  - title: "Mais"
+    url: /mais/
 
   #- title: "Talks"
     #url: /talks/
