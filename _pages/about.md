@@ -8,6 +8,8 @@ redirect_from:
   - /about.html
 ---
 
+Engenheiro Mecânico formado pela Universidade Tecnológica Federal do Paraná. 
+
 # Formação Acadêmica
 
 - Graduação (2012-2019): Engenharia Mecânica, **Universidade Tecnológica Federal do Paraná**.
