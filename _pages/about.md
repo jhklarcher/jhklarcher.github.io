@@ -18,6 +18,9 @@ Formação Acadêmica
 - Técnico / Médio (2007-2010): Geomensura, **Universidade Tecnológica Federal do Paraná**.
 
 # Experiência
+
+- **UTFPR - Laboratório de Acústica e Vibrações**  (2018/2019): Estagiário.
+
 - **BRF / Sadia / Perdigão**  (2017/2018): Estagiário. Gestão do orçamento dos pacotes de Manutenção, "Utilidades e Energéticos" e "Equipamentos de Movimentação" na Regional Sul. Gestão e análise dos indicadores de Manutenção e Energia. Acompanhamento dos processos de compra, implantação do módulo SAP PM e planejamento das atividades de manutenção, projetos, obras e investimentos nos centros de distribuição.
 
 - **Budapest University of Technology and Economics**  (2014/2015): Winter Internship (Estágio de Inverno) e Summer Internship (Estágio de verão). Projects: "LabVIEW System Connection With Arduino Microcontroller Panel" and "Investigation of The Airflow Pattern in a Slot Ventilated Test Room and Statistical Analysis of The Acquired Data".
