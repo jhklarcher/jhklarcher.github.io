@@ -1,12 +1,13 @@
 ---
 permalink: /mais/
-title: "Mais"
+title: "Outras Coisas"
 excerpt: "This is a page not in th emain menu"
 author_profile: true
 redirect_from: 
   - "/mais.html"
 ---
 
+## Pequenos Projetos
 - [Dados de Sono](/projects/sleep/)
 - [Regressão Múltipla](/projects/regressao_multipla/)
 - [Notas de aula](/material/)
