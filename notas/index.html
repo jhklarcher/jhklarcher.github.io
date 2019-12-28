@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Notas</title>
+  <meta name="description" content="Notas de aula de estatística" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Notas" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notas de aula de estatística" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Notas" />
+  
+  <meta name="twitter:description" content="Notas de aula de estatística" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="regressão-linear-múltipla.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Notas</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Início</a></li>
+<li class="chapter" data-level="1" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html"><i class="fa fa-check"></i><b>1</b> Regressão Linear Múltipla</a><ul>
+<li class="chapter" data-level="1.1" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#equações"><i class="fa fa-check"></i><b>1.1</b> Equações</a></li>
+<li class="chapter" data-level="1.2" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#estimador-para-a-variância-do-erro"><i class="fa fa-check"></i><b>1.2</b> Estimador para a variância do Erro</a></li>
+<li class="chapter" data-level="1.3" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#testes-de-hipótese-para-a-regressão"><i class="fa fa-check"></i><b>1.3</b> Testes de Hipótese para a Regressão</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#teste-para-a-significância-da-regressão-anova"><i class="fa fa-check"></i><b>1.3.1</b> Teste para a significância da regressão (ANOVA)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#r²-e-r²-ajustado"><i class="fa fa-check"></i><b>1.3.2</b> R² e R² ajustado</a></li>
+<li class="chapter" data-level="1.3.3" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#teste-para-os-coeficientes-individualmente"><i class="fa fa-check"></i><b>1.3.3</b> Teste para os coeficientes individualmente</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#premissas-do-modelo"><i class="fa fa-check"></i><b>1.4</b> Premissas do Modelo</a></li>
+<li class="chapter" data-level="1.5" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#gerando-previsões"><i class="fa fa-check"></i><b>1.5</b> Gerando Previsões</a></li>
+<li class="chapter" data-level="1.6" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#pontos-influêntes-no-modelo"><i class="fa fa-check"></i><b>1.6</b> Pontos Influêntes no Modelo</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Notas</h1>
+</div>
+<div id="início" class="section level1 unnumbered">
+<h1>Início</h1>
+<p>Notas de aula de estatística</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="regressão-linear-múltipla.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

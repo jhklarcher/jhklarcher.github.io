@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Regressão Linear Múltipla | Notas</title>
+  <meta name="description" content="1 Regressão Linear Múltipla | Notas de aula de estatística" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Regressão Linear Múltipla | Notas" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="1 Regressão Linear Múltipla | Notas de aula de estatística" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Regressão Linear Múltipla | Notas" />
+  
+  <meta name="twitter:description" content="1 Regressão Linear Múltipla | Notas de aula de estatística" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="referências.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Notas</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Início</a></li>
+<li class="chapter" data-level="1" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html"><i class="fa fa-check"></i><b>1</b> Regressão Linear Múltipla</a><ul>
+<li class="chapter" data-level="1.1" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#equações"><i class="fa fa-check"></i><b>1.1</b> Equações</a></li>
+<li class="chapter" data-level="1.2" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#estimador-para-a-variância-do-erro"><i class="fa fa-check"></i><b>1.2</b> Estimador para a variância do Erro</a></li>
+<li class="chapter" data-level="1.3" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#testes-de-hipótese-para-a-regressão"><i class="fa fa-check"></i><b>1.3</b> Testes de Hipótese para a Regressão</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#teste-para-a-significância-da-regressão-anova"><i class="fa fa-check"></i><b>1.3.1</b> Teste para a significância da regressão (ANOVA)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#r²-e-r²-ajustado"><i class="fa fa-check"></i><b>1.3.2</b> R² e R² ajustado</a></li>
+<li class="chapter" data-level="1.3.3" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#teste-para-os-coeficientes-individualmente"><i class="fa fa-check"></i><b>1.3.3</b> Teste para os coeficientes individualmente</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#premissas-do-modelo"><i class="fa fa-check"></i><b>1.4</b> Premissas do Modelo</a></li>
+<li class="chapter" data-level="1.5" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#gerando-previsões"><i class="fa fa-check"></i><b>1.5</b> Gerando Previsões</a></li>
+<li class="chapter" data-level="1.6" data-path="regressão-linear-múltipla.html"><a href="regressão-linear-múltipla.html#pontos-influêntes-no-modelo"><i class="fa fa-check"></i><b>1.6</b> Pontos Influêntes no Modelo</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regressão-linear-múltipla" class="section level1">
+<h1><span class="header-section-number">1</span> Regressão Linear Múltipla</h1>
+<p>Baseado em <span class="citation">Montgomery and Runger (<a href="#ref-montgomery1" role="doc-biblioref">2003</a>)</span>.</p>
+<div id="equações" class="section level2">
+<h2><span class="header-section-number">1.1</span> Equações</h2>
+<p>A equação geral para o modelo de regressão linear múltipla é:
+<span class="math display">\[ y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_k x_{ik} + \epsilon_i  \quad\quad\quad\quad i = 1, 2, ..., n\]</span>
+Onde os valores de <span class="math inline">\(\beta_k\)</span> são os coeficientes da regressão para cada variável e <span class="math inline">\(\beta_0\)</span> é o coeficiente de Intersecção no eixo da variável de interesse. <span class="math inline">\(k\)</span> é o numero de variáveis de regressão e <span class="math inline">\(n\)</span> é o número de observações. <span class="math inline">\(x_{ik}\)</span> é a i-ésima observação da k-ésima variável de regressão. <span class="math inline">\(\epsilon_i\)</span> é o erro do modelo para a observação i.<br />
+Em forma matricial, pode-se escrever:
+<span class="math display">\[ \boldsymbol{y=X\beta +\epsilon}  \]</span>
+Onde:</p>
+<p><span class="math display">\[ \boldsymbol{y} = \begin{bmatrix} y_{ 1 } \\ y_{ 2 } \\ \vdots  \\ y_{ n } \end{bmatrix} 
+\quad 
+\boldsymbol{X}=\begin{bmatrix} 1 &amp; x_{ 11 } &amp; x_{ 12 } &amp; \cdots  &amp; x_{ 1k } \\ 1 &amp; x_{ 11 } &amp; x_{ 11 } &amp; \cdots  &amp; x_{ 2k } \\ \vdots  &amp; \vdots  &amp; \vdots  &amp; \ddots  &amp; \vdots  \\ 1 &amp; x_{ 11 } &amp; x_{ 11 } &amp; \cdots  &amp; x_{ nk } \end{bmatrix} 
+\quad
+\boldsymbol{ \beta  }=\begin{bmatrix} \beta _{ 0 } \\ \beta _{ 1 } \\ \vdots  \\ \beta _{ k } \end{bmatrix}
+\quad
+\boldsymbol{ \epsilon  }=\begin{bmatrix} \epsilon _{ 1 } \\ \epsilon _{ 2 } \\ \vdots  \\ \epsilon _{ n } \end{bmatrix}
+\]</span></p>
+<p><span class="math inline">\(n\)</span>: número de linhas da matriz <strong>X</strong></p>
+<p><span class="math inline">\(p\)</span>: número de colunas da matriz <strong>X</strong></p>
+<p><span class="math inline">\(k=p-1\)</span></p>
+<p>Minimizando o vetor de erro com o método dos mínimos quadrados, encontra-se o melhor estimador d para os coeficientes: o vetor <span class="math inline">\(\hat{\beta}\)</span>. <span class="math inline">\(\hat{\beta}\)</span> pode ser escrito como:</p>
+<p><span class="math display">\[ \boldsymbol{\hat{\beta}} = (\boldsymbol{X}&#39;\boldsymbol{X})^{-1}\boldsymbol{X}&#39;\boldsymbol{y}  \]</span>
+O modelo ajustado será:</p>
+<p><span class="math display">\[ \boldsymbol{\hat{y}}=\boldsymbol{X \hat{\beta}}  \]</span></p>
+<p>A diferença entre o valor ajustado e o valor da observação é chamado de resíduo e pode ser descrito como:</p>
+<p><span class="math display">\[\boldsymbol{e} = \boldsymbol{y}-\boldsymbol{\hat{y}} \]</span></p>
+</div>
+<div id="estimador-para-a-variância-do-erro" class="section level2">
+<h2><span class="header-section-number">1.2</span> Estimador para a variância do Erro</h2>
+<p><span class="math display">\[ \hat{\sigma}^2 = \frac{ \sum_{ i=1}^{n}e_{i}^{2} }{ n-p } = \frac{ SS_E }{n-p}  \]</span></p>
+<p><span class="math inline">\(SS_E\)</span>: soma dos quadrados dos resíduos.</p>
+<p><span class="math inline">\((n-p)\)</span>: graus de liberdade dos resíduos.</p>
+</div>
+<div id="testes-de-hipótese-para-a-regressão" class="section level2">
+<h2><span class="header-section-number">1.3</span> Testes de Hipótese para a Regressão</h2>
+<div id="teste-para-a-significância-da-regressão-anova" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Teste para a significância da regressão (ANOVA)</h3>
+<p><span class="math inline">\(H_0: \beta_1 = \beta_2 = ... = \beta_k = 0\)</span></p>
+<p><span class="math inline">\(H_1: \beta_j \ne 0\)</span>, para pelo menos um valor de j.</p>
+<p>As estatística do teste é:</p>
+<p><span class="math display">\[ F_0 = \frac{SS_R / k}{SS_E / (n-p)} = \frac{MS_R}{MS_E} \]</span></p>
+<p><span class="math display">\[ SS_E = \boldsymbol{e}&#39; \boldsymbol{e} = \boldsymbol{y}&#39;\boldsymbol{y} - \boldsymbol{\hat{\beta}}&#39;\boldsymbol{X}&#39;\boldsymbol{y} \]</span></p>
+<p><span class="math display">\[ SS_R = \boldsymbol{\hat{\beta}}&#39;\boldsymbol{X}&#39;\boldsymbol{y} - \frac{ \left( \sum_{i=1}^{n} y_i \right)^2 }{n} \]</span></p>
+<p><span class="math display">\[ SS_T = SS_R+SS_E = \boldsymbol{y}&#39;\boldsymbol{y} - \frac{ \left( \sum_{i=1}^{n} y_i \right)^2 }{n} \]</span></p>
+<p>Se <span class="math inline">\(f_0 &gt;f_{\alpha, k, n-p}\)</span>, <span class="math inline">\(H_0\)</span> deve ser regeitada.</p>
+<p><span class="math inline">\(f_{\alpha, k, n-p}\)</span> pode ser consultado em alguma tabela ou software. Também pode-se encontrar o p-valor para a estatística F.</p>
+</div>
+<div id="r²-e-r²-ajustado" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> R² e R² ajustado</h3>
+<p><span class="math display">\[ R^2 = \frac{SS_R}{SS_T} = 1-\frac{SS_E}{SS_T} \]</span></p>
+<p><span class="math display">\[ R^2_{aj} = 1-\frac{SS_E/(n-p)}{SS_T/(n-1)} \]</span></p>
+</div>
+<div id="teste-para-os-coeficientes-individualmente" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> Teste para os coeficientes individualmente</h3>
+<p><span class="math inline">\(H_0: \beta_j=0\)</span></p>
+<p><span class="math inline">\(H_1: \beta_j \ne 0\)</span></p>
+<p>Estatística do teste:</p>
+<p><span class="math display">\[ T_0 = \frac{ \hat{\beta_j} }{\sqrt{ \hat{\sigma}^2 C_{jj}}} =  \frac{ \hat{\beta_j} }{se(\hat{\beta_j})} \]</span></p>
+<p>Onde <span class="math inline">\(C = ( \boldsymbol{X}&#39; \boldsymbol{X} )^{-1}\)</span>, então <span class="math inline">\(C_{jj}\)</span> é o elemento da diagonal de <span class="math inline">\(\boldsymbol{C}\)</span>. <span class="math inline">\(se(\hat{\beta_j})\)</span> é o erro padrão do coeficiente de <span class="math inline">\(\hat{\beta_j}\)</span>.</p>
+<p><span class="math inline">\(H_0\)</span> é rejeitada se <span class="math inline">\(|t_0|&gt;t_{\alpha/2, n-p}\)</span>. Também pode ser utilizado o p-valor para a estatística t.</p>
+</div>
+</div>
+<div id="premissas-do-modelo" class="section level2">
+<h2><span class="header-section-number">1.4</span> Premissas do Modelo</h2>
+<p>O modelo de gressão linear pelo método dos mínimos quadrados tem como premissa a normalidade dos resíduos. Essa premissa pode ser verificada por método gráfico ou por testes de normalidade, como Shapiro-Wilk e Kolmogorov-Smirnov (comparando ocm distribuição normal).</p>
+</div>
+<div id="gerando-previsões" class="section level2">
+<h2><span class="header-section-number">1.5</span> Gerando Previsões</h2>
+<p>Assumindo que <span class="math inline">\(\boldsymbol{X_0}\)</span> é uma matriz com novas observações, a correspondente <span class="math inline">\(\boldsymbol{y_0}\)</span> será dada por:
+<span class="math display">\[ \boldsymbol{y_0} = \boldsymbol{X_0}\boldsymbol{\hat{\beta}} \]</span></p>
+</div>
+<div id="pontos-influêntes-no-modelo" class="section level2">
+<h2><span class="header-section-number">1.6</span> Pontos Influêntes no Modelo</h2>
+<p>Para se avaliar os pontos mais influentes no modelo se utiliza a distância de Cook. Para tal utiliza-se:</p>
+<p><span class="math display">\[ \boldsymbol{H} = \boldsymbol{X}(\boldsymbol{X}&#39;\boldsymbol{X})^{-1} \boldsymbol{X}&#39; \]</span></p>
+<p><span class="math inline">\(h_{ii}\)</span> representa os elementos da diagonal de <span class="math inline">\(H\)</span>.</p>
+<p>O resíduo estudentizado <span class="math inline">\(r_i\)</span> é:</p>
+<p><span class="math display">\[ r_i = \frac{ e_i }{ \sqrt{ \hat{\sigma}^2 (1 - h_{ii}) } }, \quad i = 1,2,...,n \]</span></p>
+<p>Por fim, a distância de Cook é:</p>
+<p><span class="math display">\[ D_i = \frac{ r_i^2 }{ p } \cdot \frac{ h_{ii} }{ 1-h_{ii} }  \]</span></p>
+<p>Quando <span class="math inline">\(D_i &gt; 1\)</span> oponto referente é considerado influente. Dependendo da situação essas observações podem ou não ser retiradas do modelo.</p>
+
+</div>
+</div>
+<h3>Referências</h3>
+<div id="refs" class="references">
+<div id="ref-montgomery1">
+<p>Montgomery, D. C., and G. C. Runger. 2003. <em>Applied Statistics and Probability for Engineers</em>. John Wiley; Sons.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
