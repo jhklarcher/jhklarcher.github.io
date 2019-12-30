@@ -13,5 +13,5 @@ redirect_from:
 - [Regressão Múltipla](/projects/regressao_multipla/)
 - [Notas de aula](/material/)
 - [Baixar dados da cota parlamentar em CSV](https://github.com/jhklarcher/cota_deputados_csv)
-- [Torre de Hanoi](/projects/hanoi_towers/)
+- [Torre de Hanói](/projects/hanoi_towers/)
 
