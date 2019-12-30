@@ -95,13 +95,13 @@ function moveDisk(pinFrom, pinTo) {
             pinA.push(pinA[pinA.length-1]);
             pinA.splice(pinA.length-2,1);
         }
-        if(pinTo == 2){
+        if(pinTo == 2 && ((pinA[pinA.length-1] > pinB[pinB.length-1]) || (pinB[pinB.length-1] == null)) ){
             disk[pinA[pinA.length-1]].pin = 2;
             disk[pinA[pinA.length-1]].pos = pinB.length+1;
             pinB.push(pinA[pinA.length-1]);
             pinA.splice(pinA.length-1,1);
         }
-        if(pinTo == 3){
+        if(pinTo == 3 && ((pinA[pinA.length-1] > pinC[pinC.length-1]) || (pinC[pinC.length-1] == null))){
             disk[pinA[pinA.length-1]].pin = 3;
             disk[pinA[pinA.length-1]].pos = pinC.length+1;
             pinC.push(pinA[pinA.length-1]);
@@ -110,7 +110,7 @@ function moveDisk(pinFrom, pinTo) {
     }
 
     if(pinFrom == 2){
-        if(pinTo == 1){
+        if(pinTo == 1 && ((pinB[pinB.length-1] > pinA[pinA.length-1]) || (pinA[pinA.length-1] == null))){
             disk[pinB[pinB.length-1]].pin = 1;
             disk[pinB[pinB.length-1]].pos = pinA.length+1;
             pinA.push(pinB[pinB.length-1]);
@@ -122,7 +122,7 @@ function moveDisk(pinFrom, pinTo) {
             pinB.push(pinB[pinB.length-1]);
             pinB.splice(pinB.length-2,1);
         }
-        if(pinTo == 3){
+        if(pinTo == 3 && ((pinB[pinB.length-1] > pinC[pinC.length-1]) || (pinC[pinC.length-1] == null))){
             disk[pinB[pinB.length-1]].pin = 3;
             disk[pinB[pinB.length-1]].pos = pinC.length+1;
             pinC.push(pinB[pinB.length-1]);
@@ -131,13 +131,13 @@ function moveDisk(pinFrom, pinTo) {
     }
 
     if(pinFrom == 3){
-        if(pinTo == 1){
+        if(pinTo == 1 && ((pinC[pinC.length-1] > pinA[pinA.length-1]) || (pinA[pinA.length-1] == null))){
             disk[pinC[pinC.length-1]].pin = 1;
             disk[pinC[pinC.length-1]].pos = pinA.length+1;
             pinA.push(pinC[pinC.length-1]);
             pinC.splice(pinC.length-1,1);
         }
-        if(pinTo == 2){
+        if(pinTo == 2 && ((pinC[pinC.length-1] > pinB[pinB.length-1]) || (pinB[pinB.length-1] == null))){
             disk[pinC[pinC.length-1]].pin = 2;
             disk[pinC[pinC.length-1]].pos = pinB.length+1;
             pinB.push(pinC[pinC.length-1]);
