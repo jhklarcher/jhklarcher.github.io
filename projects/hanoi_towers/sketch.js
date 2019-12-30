@@ -8,7 +8,9 @@ pinC = [],
 move, pin_from, pin_to, n;
 
 function setup() {
-    createCanvas(width, height);
+    canvas = createCanvas(width, height);
+    canvas.parent('sketch-holder');
+    canvas.position(x=(windowWidth - width) / 2);
     n=disk_number-1;
     
     for (let i = 0; i < disk_number; i++) {
