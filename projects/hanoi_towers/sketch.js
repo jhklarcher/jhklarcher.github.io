@@ -24,7 +24,6 @@ function setup() {
 }
 
 function draw() {
-    //i=disk_number-1;
     background(220);
     draw_pins();
 

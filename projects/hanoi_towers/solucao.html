@@ -278,7 +278,7 @@ $(document).ready(function () {
   <a href="/mais/">Mais</a>
 </li>
 <li>
-  <a href="solucao.html">solução</a>
+  <a href="solucao.html">Solução</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -297,12 +297,24 @@ $(document).ready(function () {
 </div>
 
 
+<p>A solução iterativa é baseada nos seguintes passos <a href="https://www.geeksforgeeks.org/iterative-tower-of-hanoi/">GeeksforGeeks</a>:</p>
+<pre eval="FALSE"><code>1. Calculate the total number of moves required i.e. &quot;pow(2, n)- 1&quot; here n is number of disks.
+2. If number of disks (i.e. n) is even then interchange destination pole and auxiliary pole.
+3. for i = 1 to total number of moves:
+      if i%3 == 1:
+        legal movement of top disk between source pole and destination pole
+      if i%3 == 2:
+        legal movement top disk between source pole and 
+        auxiliary pole    
+      if i%3 == 0:
+        legal movement top disk between auxiliary pole and destination pole </code></pre>
 <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.min.js"></script>
 <script language="javascript" type="text/javascript" src="sketch2.js"></script>
 <script language="javascript" type="text/javascript" src="disk.js"></script>
 <div id="sketch-holder2">
 
 </div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 
 
 

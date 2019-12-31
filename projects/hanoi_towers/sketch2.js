@@ -79,7 +79,8 @@ function draw() {
     }
 
     else {
-        noLoop();       
+        noLoop();  
+        setTimeout(setup, 2500);
     }
     
 
