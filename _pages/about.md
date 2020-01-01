@@ -27,6 +27,6 @@ Engenheiro Mecânico formado pela Universidade Tecnológica Federal do Paraná.
 - **BRF / Sadia / Perdigão**  (2017/2018): Estagiário. Gestão do orçamento dos pacotes de Manutenção, "Utilidades e Energéticos" e "Equipamentos de Movimentação" na Regional Sul. Gestão e análise dos indicadores de Manutenção e Energia. Acompanhamento dos processos de compra, implantação do módulo SAP PM e planejamento das atividades de manutenção, projetos, obras e investimentos nos centros de distribuição.
 
 - **Budapest University of Technology and Economics**  (2014/2015): Winter Internship (Estágio de Inverno) e Summer Internship (Estágio de verão).
-  - Projects: "LabVIEW System Connection With Arduino Microcontroller Panel" and "Investigation of The Airflow Pattern in a Slot Ventilated Test Room and Statistical Analysis of The Acquired Data".
+  - **Projects**: "LabVIEW System Connection With Arduino Microcontroller Panel" and "Investigation of The Airflow Pattern in a Slot Ventilated Test Room and Statistical Analysis of The Acquired Data".
 
 - **CNPQ - Jovens Talentos para a Ciência**  (2012/2013): Bolsista de iniciação científica.
