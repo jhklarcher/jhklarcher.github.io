@@ -14,4 +14,5 @@ redirect_from:
 - [Notas de aula](/material/)
 - [Baixar dados da cota parlamentar em CSV](https://github.com/jhklarcher/cota_deputados_csv)
 - [Torre de Hanói](/projects/hanoi_towers/)
+- [Pêndulo Simples com Arrasto](/projects/pendulo_simples/)
 
