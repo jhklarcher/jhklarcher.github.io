@@ -13,7 +13,8 @@ Engenheiro Mecânico formado pela Universidade Tecnológica Federal do Paraná.
 # Formação Acadêmica
 
 - Graduação (2012-2019): Engenharia Mecânica, **Universidade Tecnológica Federal do Paraná**.
-  - **TCC**: [Construção e teste de um tubo de impedância para medição de isolamento](http://repositorio.roca.utfpr.edu.br/jspui/handle/1/11784) com Matheus H. Wachholz e orientado por Marcio de Avelar Gomes. Entre os melhores de 2018 e publicado no livro de TCCs ([Soluções em Engenharia Mecânica Edição 2019](/files/livro_tccs_2019.epub)).
+  - **Capítulo do Livro [Soluções em Engenharia Mecânica Edição 2019](/files/livro_tccs_2019.epub)** com Matheus H. Wachholz e Marcio H. de Avelar Gomes.
+  - **TCC**: [Construção e teste de um tubo de impedância para medição de isolamento](http://repositorio.roca.utfpr.edu.br/jspui/handle/1/11784) com Matheus H. Wachholz e orientado por Marcio de Avelar Gomes. Entre os melhores de 2018 e publicado no livro de TCCs.  
 
 - Intercâmbio (2014-2015): **Budapest University of Technology and Economics**.
 
