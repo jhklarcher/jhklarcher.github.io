@@ -3,7 +3,7 @@ height = 400,
 G = 1;
 var ball = new Ball();
 var arrasto = 0;
-var comp = 180;
+var comprimento = 180;
 
 function setup() {
     canvas = createCanvas(width, height);
@@ -15,9 +15,9 @@ function setup() {
     sliderRange(0, 10, 0.1);
     gui.addGlobals('arrasto');
     sliderRange(1, 390, 1);
-    gui.addGlobals('comp');    
+    gui.addGlobals('comprimento');    
 
-    ball.len = comp;
+    ball.len = comprimento;
     ball.x_origin = width/2; // x da origem
     ball.y_origin = 0; // y origem
     ball.ang = PI/2;
@@ -41,7 +41,7 @@ function draw() {
 
     ball.update();
     ball.arrasto = arrasto;
-    ball.len = comp;
+    ball.len = comprimento;
 }
 
 
