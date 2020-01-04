@@ -17,4 +17,3 @@ redirect_from:
 - [Torre de Hanói](/projects/hanoi_towers/)
 - [Pêndulo Simples com Arrasto](/projects/pendulo_simples/)
 - [Pêndulo Duplo](/projects/pendulo_duplo/)
-- 
