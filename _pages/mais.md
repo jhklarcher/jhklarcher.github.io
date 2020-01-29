@@ -17,3 +17,4 @@ redirect_from:
 - [Torre de Hanói](/projects/hanoi_towers/)
 - [Pêndulo Simples com Arrasto](/projects/pendulo_simples/)
 - [Pêndulo Duplo](/projects/pendulo_duplo/)
+- [Clusterização de Bairros de Curitiba](https://nbviewer.jupyter.org/github/jhklarcher/Coursera_Capstone/blob/master/final_project/final_project.ipynb) ([Report](https://github.com/jhklarcher/Coursera_Capstone/blob/master/final_project/capstone_report.pdf))
