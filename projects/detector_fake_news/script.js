@@ -1,7 +1,8 @@
 function returnValue() {
     document.getElementById("resultado").innerHTML = "Verificando..." + "<br>" + '<div class="loader"><div>';
     document.getElementById("resultado").setAttribute("class", null);
-     
+    document.getElementById("prob").innerHTML = ""
+
      const api_url = 'https://detector-fake-news.herokuapp.com';
      
      const noticia = {
