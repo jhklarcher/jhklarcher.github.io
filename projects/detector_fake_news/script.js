@@ -28,5 +28,6 @@ function returnValue() {
     });
 }
 function centerTitle() {
-	document.getElementsByClassName("title toc-ignore")[0].setAttribute("align", "center");
+    document.getElementsByClassName("title toc-ignore")[0].setAttribute("align", "center");
+    document.getElementsByClassName("title toc-ignore")[0].innerHTML = null;
 }

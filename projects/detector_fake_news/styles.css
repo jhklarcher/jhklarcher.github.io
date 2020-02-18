@@ -9,7 +9,7 @@
 	padding:16px 31px;
 	text-decoration:none;
 	display: block;
-	width: 70%;
+	width: 40%;
 }
 .false {
 	background-color: #f44336;
@@ -22,11 +22,28 @@
 	padding:16px 31px;
 	text-decoration:none;
 	display: block;
-	width: 70%;
+	width: 40%;
 }
 
 input {
-	width: 70%;
+  width: 70%;
+}
+
+.botao {
+  border-radius:25px;
+  padding:16px 31px;
+  border:1px solid rgb(224, 224, 222);
+  background-color: #F6F7F7;
+  color:#594B5B;
+  width: 40%;
+}
+
+.formulario {
+  border-radius:25px;
+  padding:16px 31px;
+  border:1px solid #B3A394;
+  background-color: #ffffff;
+  color:#594B5B;
 }
 
 
