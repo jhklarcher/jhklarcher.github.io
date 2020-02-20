@@ -1,7 +1,7 @@
 ---
 permalink: /mais/
 title: "Outras Coisas"
-excerpt: "This is a page not in th emain menu"
+excerpt: "About"
 author_profile: true
 redirect_from: 
   - "/mais.html"
