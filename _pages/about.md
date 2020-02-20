@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-- Entusiasta de Ciência de Dados
+- Entusiasta de Ciência de Dados.
 - Engenheiro Mecânico formado pela Universidade Tecnológica Federal do Paraná. 
 
 # Formação Acadêmica
