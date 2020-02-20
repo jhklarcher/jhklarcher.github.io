@@ -1,13 +1,12 @@
 ---
 permalink: /
+title: "José Henrique K. Larcher"
 excerpt: "Sobre"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
-
-# 
 
 Engenheiro Mecânico formado pela Universidade Tecnológica Federal do Paraná. 
 
