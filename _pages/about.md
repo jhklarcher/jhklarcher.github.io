@@ -8,7 +8,8 @@ redirect_from:
   - /about.html
 ---
 
-Engenheiro Mecânico formado pela Universidade Tecnológica Federal do Paraná. 
+- Entusiasta de Ciência de Dados
+- Engenheiro Mecânico formado pela Universidade Tecnológica Federal do Paraná. 
 
 # Formação Acadêmica
 
