@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "José Henrique K. Larcher"
+
 excerpt: "Sobre"
 author_profile: true
 redirect_from: 
