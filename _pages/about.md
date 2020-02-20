@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-# José Henrique K. Larcher
+
 
 Engenheiro Mecânico formado pela Universidade Tecnológica Federal do Paraná. 
 
