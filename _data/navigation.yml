@@ -3,7 +3,6 @@ main:
   - title: "Projetos"
     url: /projetos/
   - title: "Material"
-    url: /Material/
+    url: /material/
   - title: "Currículo"
     url: /files/CV_JoseLarcher.pdf
-    
