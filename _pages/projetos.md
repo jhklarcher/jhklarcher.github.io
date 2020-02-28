@@ -1,16 +1,14 @@
 ---
-permalink: /mais/
-title: "Outras Coisas"
-excerpt: "About"
+permalink: /projetos/
+title: "Projetos"
+excerpt: "Projetos"
 author_profile: true
 redirect_from: 
-  - "/mais.html"
+  - "/projetos.html"
   - "/projects/"
+  - "/mais/"
 ---
 
-- [Notas de aula](/material/)
-
-## Pequenos Projetos
 - [Baixar dados da cota parlamentar em CSV](https://github.com/jhklarcher/cota_deputados_csv)
 - [Bitcoin Dashboard](https://jhklarcher.github.io/projects/bitcoin/)
 - [Clusterização de Bairros de Curitiba](https://nbviewer.jupyter.org/github/jhklarcher/Coursera_Capstone/blob/master/final_project/final_project.ipynb) ([Report](https://github.com/jhklarcher/Coursera_Capstone/blob/master/final_project/capstone_report.pdf))

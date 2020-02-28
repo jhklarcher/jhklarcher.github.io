@@ -1,9 +1,9 @@
 # main links links
 main:
+  - title: "Projetos"
+    url: /projetos/
+  - title: "Material"
+    url: /Material/
   - title: "Currículo"
     url: /files/CV_JoseLarcher.pdf
-  - title: "Mais"
-    url: /mais/
-
-  #- title: "Talks"
-    #url: /talks/
+    
