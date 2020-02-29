@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Detector de Fake News</title>
+    <title>Sobre o Projeto - Detector de Fake News</title>
 
     <!-- Bootstrap -->
         <!-- Bootstrap core CSS -->
@@ -37,8 +37,8 @@
       
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="sobre.html">Sobre o Projeto</a></li>
+              <li><a href="index.html">Home</a></li>
+              <li class="active"><a href="sobre.html">Sobre o Projeto</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="https://github.com/jhklarcher/detector_fake_news">Repositório no GitHub</a></li>
@@ -49,25 +49,25 @@
     
     
     
-    <div class="container" style="text-align: center; width: 50%;">
-        <h1>Detector de Fake News</h1>
-        <p>Utilizando Machine Learning</p>
-        <br />
-        <br />
-        <br />
-        <div class="form-group">
-            <label class="control-label">Digite a URL a ser verificada:</label>
-            <div class="input-group">
-                <input id="noticia_url"  type="text" class="form-control input-lg" value="http://" >
-                <span class="input-group-btn">
-                    <button class="btn btn-primary btn-lg" type="button" onclick="returnValue()" >Verificar</button>
-                </span>
-            </div>
-        </div>
-        <span>
-            <p id="resultado"></p>
-            <p id="prob"></p>
-        </span>
+    <div class="container" style="width: 50%;">
+        <h1>Sobre o Projeto</h1>
+        <h2>Dados</h2>
+        <p>As bases de dados utilizadas foram <a href="https://github.com/ViniciusNunes0/SIRENE-news">SIRENE-news</a> e <a href="https://github.com/roneysco/Fake.br-Corpus">Fake.br-Corpus</a>.</p>
+        <h3>Agregação de dados</h3>
+        <p>Com o script <code>get_data.py</code> os dados são agregados em um dataframe no pandas, com classificações <code>true</code> ou <code>false</code> e um <a href="https://github.com/jhklarcher/detector_fake_news/blob/master/dados/fake_news_data.csv">arquivo csv</a> é criado.</p>
+        <h2>Modelo</h2>
+        <p>Um modelo é criado e descrito nesse <a href="https://nbviewer.jupyter.org/gist/jhklarcher/4376f54c01e6d7b8ca3b488f3a24354d">notebook</a>. É utilizado uma vetorização Tf–idf nos textos das notícias e um modelo <a href="https://lightgbm.readthedocs.io/en/latest/">LightGBM</a>. Os hiperparâmetros são tunados utilizando o <a href="https://scikit-optimize.github.io/auto_examples/index.html">scikit-optimize</a> utilizando a função <a href="https://www.youtube.com/watch?v=WhnkeasZNHI">desse tutorial (muito bom!) do Mario Filho</a>.</p>
+        <p>Os modelos de vetorização e de machinelearning foram salvos em arquivos <code>.pkl</code> utilizando a biblioteca <a href="https://joblib.readthedocs.io/en/latest/">Joblib</a>.</p>
+        <h2>API</h2>
+        <p>Uma API foi criada utilizando Flask no Heroku. A API recebe um request em Json no formato <code>{url: url_da_noticia}</code> e retorna um Json no formato:</p>
+        <pre><code>{results: 
+        {resultado: (true/fake)
+        , probabilidade: (float)
+        }</code></pre>
+        <p>O <code>resultado</code> indica se a notícia foi considerada verdadeira ou falsa para o modelo e <code>probabilidade</code> é a probabilidade de que a notícia seja falsa.</p>
+        <p>A api pode ser acessada no endereço <a href="https://detector-fake-news.herokuapp.com/" class="uri">https://detector-fake-news.herokuapp.com/</a>, que retorna resultados através de requests de aplicativos.</p>
+        <h2>Página</h2>
+        <p>Foi criada uma página que recebe uma URL de notícia e envia à API, recebendo seu resultado e enviando apresentando de forma mais amigável utilizando JavaScript.</p>
     </div>
 
     <br />
