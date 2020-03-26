@@ -1,7 +1,7 @@
 ---
-title: 'Future Blog Post2'
+title: 'Future Blog Post 2'
 date: 2020-01-01
-permalink: /posts/2020/01/blog-post-1.html
+permalink: /posts/2020/01/food-consumption/
 tags:
   - cool posts
   - category1
