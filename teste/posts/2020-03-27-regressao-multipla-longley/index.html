@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+<title>José Larcher: Regressão Múltipla no Dataset Longley</title>
+
+<meta property="description" itemprop="description" content="Criando um modelo de Regressão Linear Múltipla do zero no dataset Longley e verificando as premissas do modelo."/>
+
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2020-03-27"/>
+<meta property="article:created" itemprop="dateCreated" content="2020-03-27"/>
+<meta name="article:author" content="José Larcher"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="José Larcher: Regressão Múltipla no Dataset Longley"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Criando um modelo de Regressão Linear Múltipla do zero no dataset Longley e verificando as premissas do modelo."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="José Larcher"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:title" content="José Larcher: Regressão Múltipla no Dataset Longley"/>
+<meta property="twitter:description" content="Criando um modelo de Regressão Linear Múltipla do zero no dataset Longley e verificando as premissas do modelo."/>
+
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Regressão Múltipla no Dataset Longley"]},{"type":"character","attributes":{},"value":["Criando um modelo de Regressão Linear Múltipla do zero no dataset Longley e verificando as premissas do modelo."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["José Larcher"]},{"type":"character","attributes":{},"value":["https://jhklarcher.github.io"]}]}]},{"type":"character","attributes":{},"value":["03-27-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["regressao-multipla-longley_files/figure-html5/unnamed-chunk-18-1.png","regressao-multipla-longley_files/figure-html5/unnamed-chunk-4-1.png","regressao-multipla-longley_files/figure-html5/unnamed-chunk-5-1.png","regressao-multipla-longley_files/figure-html5/unnamed-chunk-8-1.png","regresso-mltipla-longley_files/bowser-1.9.3/bowser.min.js","regresso-mltipla-longley_files/distill-2.2.21/template.v2.js","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-18-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-19-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-20-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-21-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-3-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-4-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-5-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-7-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-8-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-9-1.png","regresso-mltipla-longley_files/jquery-1.11.3/jquery.min.js","regresso-mltipla-longley_files/webcomponents-2.0.0/webcomponents.js","regresso-mltipla-longley.html"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #455a64;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative;}
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+</style>
+
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for table of contents */
+
+.d-toc {
+  color: rgba(0,0,0,0.8);
+  font-size: 0.8em;
+  line-height: 1em;
+}
+
+.d-toc-header {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 1.3em;
+}
+
+.d-toc a {
+  border-bottom: none;
+}
+
+.d-toc ul {
+  padding-left: 0;
+}
+
+.d-toc li>ul {
+  padding-top: 0.8em;
+  padding-left: 16px;
+  margin-bottom: 0.6em;
+}
+
+.d-toc ul,
+.d-toc li {
+  list-style-type: none;
+}
+
+.d-toc li {
+  margin-bottom: 0.9em;
+}
+
+.d-toc-separator {
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+.d-article-with-toc {
+  border-top: none;
+  padding-top: 0;
+}
+
+
+
+/* Tweak code blocks (note that this CSS is repeated above in an injection
+   into the d-code shadow dom) */
+
+d-code {
+  overflow-x: auto !important;
+}
+
+pre.d-code code.d-code {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+pre.text-output {
+
+  font-size: 12px;
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+@media(min-width: 768px) {
+
+d-code {
+  overflow-x: visible !important;
+}
+
+pre.d-code code.d-code  {
+    padding-left: 18px;
+    font-size: 14px;
+}
+pre.text-output {
+  font-size: 14px;
+}
+}
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // create d-bibliography
+  var bibliography = $('<d-bibliography></d-bibliography>');
+  $('#distill-bibliography').wrap(bibliography);
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace citations with <d-cite>
+  $('.citation').each(function(i, val) {
+    appendix = true;
+    var cites = $(this).attr('data-cites').split(" ");
+    var dt_cite = $('<d-cite></d-cite>');
+    dt_cite.attr('key', cites.join());
+    $(this).replaceWith(dt_cite);
+  });
+  // remove refs
+  $('#refs').remove();
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-toc a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // replace code blocks with d-code
+  $('pre>code').each(function(i, val) {
+    var code = $(this);
+    var pre = code.parent();
+    var clz = "";
+    var language = pre.attr('class');
+    if (language) {
+      // map unknown languages to "clike" (without this they just dissapear)
+      if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                               "javascript", "js", "julia", "lua", "markdown",
+                               "markup", "mathml", "python", "svg", "xml"]) == -1)
+        language = "clike";
+      language = ' language="' + language + '"';
+      var dt_code = $('<d-code block' + language + clz + '></d-code>');
+      dt_code.text(code.text());
+      pre.replaceWith(dt_code);
+    } else {
+      code.addClass('text-output').unwrap().changeElementType('pre');
+    }
+  });
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('d-code, pre.text-output, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // table of contents
+    if (have_authors) // adjust border if we are in authors
+      $('.d-toc').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+    $('d-code').each(function(i, val) {
+      var style = document.createElement('style');
+      style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                        '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+      if (this.shadowRoot)
+        this.shadowRoot.appendChild(style);
+    });
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-toc-header').remove();
+  $('.d-toc').remove();
+  $('.d-toc-separator').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Regressão Múltipla no Dataset Longley","description":"Criando um modelo de Regressão Linear Múltipla do zero no dataset Longley e verificando as premissas do modelo.","authors":[{"author":"José Larcher","authorURL":"https://jhklarcher.github.io","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-03-27T00:00:00.000-03:00","citationText":"Larcher, 2020"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">José Larcher</a>
+<a href="../../index.html">Home</a>
+<a href="../../projetos.html">Projetos</a>
+<a href="../..//material/">Material</a>
+</div>
+<div class="nav-right">
+<a href="https://www.linkedin.com/in/jhlarcher">LinkedIn</a>
+<a href="https://github.com/jhklarcher">GitHub</a>
+<a href="../../about.html">CV</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Regressão Múltipla no Dataset Longley</h1>
+<p>Criando um modelo de Regressão Linear Múltipla do zero no dataset Longley e verificando as premissas do modelo.</p>
+</div>
+
+<div class="d-byline">
+  José Larcher <a href="https://jhklarcher.github.io" class="uri">https://jhklarcher.github.io</a> 
+  
+<br/>03-27-2020
+</div>
+
+<div class="d-article">
+<p>Métodos de regressão são utilizados para inferir a relação de variáveis independentes com um variável dependente. Entre os métodos de regressão um dos mais conhecidos e básicos é o modelo de regressão linear. A regressão linear é chamada múltipla quando é aplicada utilizando mais de uma <em>feature</em> para prever a variável de interesse (<em>target</em>).</p>
+<p>Nesse post vamos ver como “criar” um modelo de regressão múltipla do zero no R, avaliar a regressão e testar as premissas do modelo. Fazer uma regressão linear no R é muito mais simples utilizando as funções prontas da linguagem, mas o modelo é criado do zero como forma de aprendizado.</p>
+<h1 id="base-teórica">Base teórica</h1>
+<p>Aqui eu apresento um pouco da base teórica, mas vale entender que o mais importante para aplicar o modelo é a equação principal na forma matricial.</p>
+<p>A equação para o modelo de regressão linear múltipla é: <span class="math display">\[ y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_k x_{ik} + \epsilon_i  \quad\quad\quad\quad i = 1, 2, ..., n \]</span></p>
+<p>Onde os valores de <span class="math inline">\(\beta_k\)</span> são os coeficientes da regressão para cada variável e <span class="math inline">\(\beta_0\)</span> é o coeficiente de Intersecção no eixo da variável de interesse. <span class="math inline">\(k\)</span> é o numero de variáveis de regressão e <span class="math inline">\(n\)</span> é o número de observações. <span class="math inline">\(x_{ik}\)</span> é a i-ésima observação da k-ésima variável de regressão. <span class="math inline">\(\epsilon_i\)</span> é o erro do modelo para a observação i.</p>
+<p>Em forma matricial, pode-se escrever: <span class="math display">\[ \boldsymbol{y=X\beta +\epsilon} \]</span></p>
+<p>Onde:</p>
+<p><span class="math display">\[ \boldsymbol{y} = \begin{bmatrix} y_{ 1 } \\ y_{ 2 } \\ \vdots  \\ y_{ n } \end{bmatrix} 
+\quad 
+\boldsymbol{X}=\begin{bmatrix} 1 &amp; x_{ 11 } &amp; x_{ 12 } &amp; \cdots  &amp; x_{ 1k } \\ 1 &amp; x_{ 11 } &amp; x_{ 11 } &amp; \cdots  &amp; x_{ 2k } \\ \vdots  &amp; \vdots  &amp; \vdots  &amp; \ddots  &amp; \vdots  \\ 1 &amp; x_{ 11 } &amp; x_{ 11 } &amp; \cdots  &amp; x_{ nk } \end{bmatrix} 
+\quad
+\boldsymbol{ \beta  }=\begin{bmatrix} \beta _{ 0 } \\ \beta _{ 1 } \\ \vdots  \\ \beta _{ k } \end{bmatrix}
+\quad
+\boldsymbol{ \epsilon  }=\begin{bmatrix} \epsilon _{ 1 } \\ \epsilon _{ 2 } \\ \vdots  \\ \epsilon _{ n } \end{bmatrix}\]</span></p>
+<p><span class="math inline">\(n\)</span>: número de linhas da matriz <strong>X</strong></p>
+<p><span class="math inline">\(p\)</span>: número de colunas da matriz <strong>X</strong></p>
+<p><span class="math inline">\(k=p-1\)</span></p>
+<p>Minimizando o vetor de erro com o método dos mínimos quadrados, encontra-se o melhor estimador para os coeficientes: o vetor <span class="math inline">\(\hat{\beta}\)</span>. <span class="math inline">\(\hat{\beta}\)</span> pode ser escrito como:</p>
+<p><span class="math display">\[ \boldsymbol{\hat{\beta}} = (\boldsymbol{X}&#39;\boldsymbol{X})^{-1}\boldsymbol{X}&#39;\boldsymbol{y}  \]</span></p>
+<p>O modelo ajustado será:</p>
+<p><span class="math display">\[ \boldsymbol{\hat{y}}=\boldsymbol{X \hat{\beta}}  \]</span></p>
+<p>A diferença entre o valor ajustado e o valor da observação é chamado de resíduo e pode ser descrito como:</p>
+<p><span class="math display">\[\boldsymbol{e} = \boldsymbol{y}-\boldsymbol{\hat{y}} \]</span></p>
+<p>Assim, o que precisamos são valores de entrada <span class="math inline">\(\boldsymbol{X}\)</span> e valores de saída <span class="math inline">\(\boldsymbol{y}\)</span> para realizar a regressão linear.</p>
+<h2 id="avaliação-inicial">Avaliação Inicial</h2>
+<p>Antes de criar o modelo é importante avaliar e visualizar os dados para entender o que se está modelando.</p>
+<p>Vamos começar importando algumas bibliotecas para visualização e “setando” um tema para utilizar nos gráficos do ggplot (biblioteca que vamos utilizar para as visualizações, além o R base).</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+# Bibliotecas
+library(ggplot2)
+library(ggcorrplot)
+theme_set(theme_light())</code></pre>
+</div>
+<p>E seguida vamos importar os dados. O dataset <em>longley</em> já está dentro do R, então para importa-lo é bem simples:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+data(longley)</code></pre>
+</div>
+<p>Assim o dataset fica armazenado na variável <code>longely</code>. Vamos ver as primeiras linhas para saber do que se trata.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+head(longley)</code></pre>
+<pre><code>
+     GNP.deflator     GNP Unemployed Armed.Forces Population Year
+1947         83.0 234.289      235.6        159.0    107.608 1947
+1948         88.5 259.426      232.5        145.6    108.632 1948
+1949         88.2 258.054      368.2        161.6    109.773 1949
+1950         89.5 284.599      335.1        165.0    110.929 1950
+1951         96.2 328.975      209.9        309.9    112.075 1951
+1952         98.1 346.999      193.2        359.4    113.270 1952
+     Employed
+1947   60.323
+1948   61.122
+1949   60.171
+1950   61.187
+1951   63.221
+1952   63.639</code></pre>
+</div>
+<p>O conjunto de dados Longley contém variáveis macroeconômicas dos EUA que são conhecidas por serem altamente colineares.</p>
+<p>Os dados são:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Variável</strong></th>
+<th style="text-align: center;"><strong>Descrição</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GNP.deflator</td>
+<td style="text-align: center;">Deflator implícito de preço do PNB (1954 = 100).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GNP</td>
+<td style="text-align: center;">Produto Nacional Bruto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Unemployed</td>
+<td style="text-align: center;">Número de desempregados.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Armed.Forces</td>
+<td style="text-align: center;">Número de pessoas nas forças armadas.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Population</td>
+<td style="text-align: center;">População “não institucionalizada” ≥ 14 anos de idade.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Year</td>
+<td style="text-align: center;">Ano.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Employed</td>
+<td style="text-align: center;">Número de pessoas empregadas.</td>
+</tr>
+</tbody>
+</table>
+<p>O nosso objetivo será prever a variável <code>Employed</code> com base nas outras variáveis. Pensando nisso vamos avaliar como as variáveis se comportam e quais são as relações entre elas. Para isso vamos utilizar a função <code>pairs</code> do R.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+pairs(longley, pch = 19)</code></pre>
+<p><img src="regressao-multipla-longley_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<p>Percebemos que a maior parte das variáveis tem algum tipo de relação linear.</p>
+<p>Podemos visualizar também um plot da matriz de correlação. A função <code>cor</code> calcula a matriz de correlação. Para plotar esses valores utilizamos a função do <code>ggcorrplot</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+ggcorrplot(cor(longley[1:6])) # Correlação entre as features</code></pre>
+<p><img src="regressao-multipla-longley_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<p>Aqui se confirma que a existe uma grande correlação entre a maior parte das variáveis. Sendo assim, pode-se imaginar que algumas das variáveis são redundantes para o modelo.</p>
+<h2 id="modelo-de-regressão">Modelo de Regressão</h2>
+<p>Primeiro vamos criar um modelo de regressão com a função <code>lm</code> do R, para ver quais valores a nossa regressão deveria retornar.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+modelo1 &lt;- lm(Employed ~ GNP.deflator + GNP + Unemployed + Armed.Forces + Population + Year, data=longley)
+summary(modelo1)</code></pre>
+<pre><code>
+Call:
+lm(formula = Employed ~ GNP.deflator + GNP + Unemployed + Armed.Forces + 
+    Population + Year, data = longley)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.41011 -0.15767 -0.02816  0.10155  0.45539 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -3.482e+03  8.904e+02  -3.911 0.003560 ** 
+GNP.deflator  1.506e-02  8.492e-02   0.177 0.863141    
+GNP          -3.582e-02  3.349e-02  -1.070 0.312681    
+Unemployed   -2.020e-02  4.884e-03  -4.136 0.002535 ** 
+Armed.Forces -1.033e-02  2.143e-03  -4.822 0.000944 ***
+Population   -5.110e-02  2.261e-01  -0.226 0.826212    
+Year          1.829e+00  4.555e-01   4.016 0.003037 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.3049 on 9 degrees of freedom
+Multiple R-squared:  0.9955,    Adjusted R-squared:  0.9925 
+F-statistic: 330.3 on 6 and 9 DF,  p-value: 4.984e-10</code></pre>
+</div>
+<p>Agora vamos criar o nosso modelo próprio. A matriz <span class="math inline">\(\boldsymbol{X}\)</span> tem a primeira coluna compasta por números 1.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+X &lt;- data.matrix(longley[1:6]) # coloca variáveis na matriz X
+X &lt;- cbind(rep(1,nrow(X)),X) # cria uma primeira coluna de 1&#39;s
+y &lt;- data.matrix(longley[7]) # cria um vetor com a variável de interesse
+beta &lt;- solve(t(X) %*% X) %*% t(X) %*% y # valores de beta calculados
+resid &lt;- (y - X %*% beta) # valores de resíduo
+
+print(X)</code></pre>
+<pre><code>
+       GNP.deflator     GNP Unemployed Armed.Forces Population Year
+1947 1         83.0 234.289      235.6        159.0    107.608 1947
+1948 1         88.5 259.426      232.5        145.6    108.632 1948
+1949 1         88.2 258.054      368.2        161.6    109.773 1949
+1950 1         89.5 284.599      335.1        165.0    110.929 1950
+1951 1         96.2 328.975      209.9        309.9    112.075 1951
+1952 1         98.1 346.999      193.2        359.4    113.270 1952
+1953 1         99.0 365.385      187.0        354.7    115.094 1953
+1954 1        100.0 363.112      357.8        335.0    116.219 1954
+1955 1        101.2 397.469      290.4        304.8    117.388 1955
+1956 1        104.6 419.180      282.2        285.7    118.734 1956
+1957 1        108.4 442.769      293.6        279.8    120.445 1957
+1958 1        110.8 444.546      468.1        263.7    121.950 1958
+1959 1        112.6 482.704      381.3        255.2    123.366 1959
+1960 1        114.2 502.601      393.1        251.4    125.368 1960
+1961 1        115.7 518.173      480.6        257.2    127.852 1961
+1962 1        116.9 554.894      400.7        282.7    130.081 1962</code></pre>
+<pre class="r"><code>
+print(y)</code></pre>
+<pre><code>
+     Employed
+1947   60.323
+1948   61.122
+1949   60.171
+1950   61.187
+1951   63.221
+1952   63.639
+1953   64.989
+1954   63.761
+1955   66.019
+1956   67.857
+1957   68.169
+1958   66.513
+1959   68.655
+1960   69.564
+1961   69.331
+1962   70.551</code></pre>
+<pre class="r"><code>
+print(beta)</code></pre>
+<pre><code>
+                  Employed
+             -3.482259e+03
+GNP.deflator  1.506187e-02
+GNP          -3.581918e-02
+Unemployed   -2.020230e-02
+Armed.Forces -1.033227e-02
+Population   -5.110411e-02
+Year          1.829151e+00</code></pre>
+<pre class="r"><code>
+print(resid)</code></pre>
+<pre><code>
+        Employed
+1947  0.26734034
+1948 -0.09401363
+1949  0.04628748
+1950 -0.41011431
+1951  0.30971490
+1952 -0.24931090
+1953 -0.16404864
+1954 -0.01318004
+1955  0.01430508
+1956  0.45539441
+1957 -0.01726861
+1958 -0.03905472
+1959 -0.15554966
+1960 -0.08567100
+1961  0.34193182
+1962 -0.20675753</code></pre>
+</div>
+<h2 id="normalidade-dos-resíduos">Normalidade dos resíduos</h2>
+<p>Uma das premissas do modelo linear é que os resíduos tem uma distribuição aproximadamente normal. Vamos plotar o histograma dos resíduos em cima de uma distribuição normal para avaliar.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+hist(resid, breaks=6, prob = TRUE)
+lines(seq(-1, 1, length=100), dnorm(seq(-1, 1, length=100), mean(resid), sd(resid)))</code></pre>
+<p><img src="regressao-multipla-longley_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+</div>
+<h3 id="testes-para-normalidade">Testes para normalidade</h3>
+<p>Existem testes para avaliar a normalidade, o primeiro é o de Shapiro-Wilk:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+shapiro.test(resid)</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  resid
+W = 0.9486, p-value = 0.4679</code></pre>
+</div>
+<p>O p-valor é 0.4679, então a hipótese de a distribuição ser nomal é aceita.</p>
+<h3 id="teste-ks-para-normalidade">Teste KS para normalidade</h3>
+<p>O segundo é o teste de Kolmogorov-Smirnov, nele comparamos a distribuição de resíduos com uma distribuição normal.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+ks.test(resid, &quot;pnorm&quot;, mean(resid), sd(resid))</code></pre>
+<pre><code>
+    One-sample Kolmogorov-Smirnov test
+
+data:  resid
+D = 0.1723, p-value = 0.6672
+alternative hypothesis: two-sided</code></pre>
+</div>
+<p>O p-valor é 0.6672, então a hipótese de a distribuição ser nomal é aceita.</p>
+<h3 id="teste-para-a-colinearidade-variance-inflation-factor">Teste para a colinearidade (Variance inflation factor)</h3>
+<p>O teste <em>Variance inflation factor</em> avalia a multicolinearidade. Com valores de <span class="math inline">\(VIF&gt;5\)</span> para a maior parte das variáveis, elas apresentam alta colinearidade entre sí.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(car)
+vif(modelo1)</code></pre>
+<pre><code>
+GNP.deflator          GNP   Unemployed Armed.Forces   Population 
+   135.53244   1788.51348     33.61889      3.58893    399.15102 
+        Year 
+   758.98060 </code></pre>
+</div>
+<p>Então essas variáveis apresentam alta colinearidade entre sí.</p>
+<h3 id="análise-de-variância-anova">Análise de variância (ANOVA)</h3>
+<p>A <a href="https://pt.wikipedia.org/wiki/An%C3%A1lise_de_vari%C3%A2ncia">análise da variância</a> permite avaliar se a regressão é representativa.</p>
+<p>As hipóteses são:</p>
+<p><span class="math inline">\(H_0: \beta_0 = \beta_1 = ... = \beta_k = 0\)</span>.</p>
+<p><span class="math inline">\(H_1:\beta_j\neq0\)</span>, para pelomenos um j.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+k &lt;- ncol(X)-1
+p &lt;- k + 1
+n &lt;- nrow(X)
+
+SS_R &lt;-  t(beta) %*% t(X) %*% y - (sum(y)^2)/n
+SS_E &lt;- (t(resid) %*% resid)
+SS_T &lt;- t(y) %*% y - (sum(y)^2)/n
+
+MS_R &lt;- SS_R/k
+MS_E &lt;- SS_E/(n-p)
+
+F_0 &lt;- MS_R/MS_E
+F_CR &lt;- qf(.95, df1=k, df2=(n-p))
+p_val &lt;- pf(F_0, df1=k, df2=(n-p), lower.tail=F)
+print(p_val)</code></pre>
+<pre><code>
+            Employed
+Employed 4.98407e-10</code></pre>
+</div>
+<p>Como o p-valor é de 4.98407e-10 (muito baixo), a hipótese nula é rejeitada.</p>
+<h3 id="r-e-r-ajustado">R² e R² ajustado</h3>
+<p>Os valores de R² avaliam o quanto o modelo está bem ajustado aos dados. Os valores variam entre 0 e 1.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+R2 &lt;- SS_R/SS_T
+R2_ajust &lt;- 1 - (SS_E * (n-1))/(SS_T * (n-p))
+
+print(R2_ajust)</code></pre>
+<pre><code>
+         Employed
+Employed 0.992465</code></pre>
+</div>
+<p>Com um valor de 0.992465, o modelo representa bem os dados.</p>
+<h3 id="teste-para-os-coeficientes-individualmente">Teste para os coeficientes individualmente</h3>
+<p>Um <a href="https://pt.wikipedia.org/wiki/Teste_t_de_Student">teste</a> t é aplicado para avaliar os coeficiêntes da regressão individualmente. A hipótese nula é:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+sigma_chapeu &lt;- SS_E/(n-p)
+C &lt;- solve(t(X) %*% X)
+
+T_CR &lt;- qt(.025, df=(n-p),  lower.tail = F)
+T_0 &lt;- vector()
+p_val_t &lt;- vector()
+SE &lt;- vector()
+
+for(i in 1:7) {
+  T_0[i] &lt;- abs(beta[i]/(sqrt(sigma_chapeu*C[i,i])))
+  p_val_t[i] &lt;- pt(T_0[i], df=(n-p), lower.tail=F)*2
+  SE[i] &lt;- sqrt(sigma_chapeu*C[i,i])
+}
+
+print(p_val_t)</code></pre>
+<pre><code>
+[1] 0.0035604037 0.8631408602 0.3126810729 0.0025350918 0.0009443668
+[6] 0.8262117909 0.0030368034</code></pre>
+</div>
+<p>A hipótese nula é aceita para <span class="math inline">\(\beta_2\)</span>, <span class="math inline">\(\beta_3\)</span> e <span class="math inline">\(\beta_6\)</span>, o que significa que esses valores podem ser considerados zero para a nossa regressão.</p>
+<h2 id="função-de-sumário">Função de Sumário</h2>
+<p>Agora para facilitar a avaliação de uma regressão é criada uma função de sumário utilizando a função do R como base.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+sumario &lt;- function(X, y) {
+  # Cálculo de beta e dos resíduos
+  beta &lt;- solve(t(X) %*% X) %*% t(X) %*% y
+  resid &lt;- (y - X %*% beta)
+  
+  #Cálculo dos graus de liberdade e ANOVA
+  k &lt;- ncol(X)-1
+  p &lt;- k + 1
+  n &lt;- nrow(X)
+  SS_R &lt;-  t(beta) %*% t(X) %*% y - (sum(y)^2)/n
+  SS_E &lt;- (t(resid) %*% resid)
+  SS_T &lt;- t(y) %*% y - (sum(y)^2)/n
+  MS_R &lt;- SS_R/k
+  MS_E &lt;- SS_E/(n-p)
+  F_0 &lt;- MS_R/MS_E # Estatística F
+  #F_CR &lt;- qf(.95, df1=k, df2=(n-p))
+  p_val &lt;- pf(F_0, df1=k, df2=(n-p), lower.tail=F) # P-valor da anova
+  R2 &lt;- SS_R/SS_T
+  R2_ajust &lt;- 1 - (SS_E * (n-1))/(SS_T * (n-p))
+  sigma_chapeu &lt;- SS_E/(n-p)
+  C &lt;- solve(t(X) %*% X)
+  
+  T_0 &lt;- vector() # Estatística T dos coef.
+  p_val_t &lt;- vector() # P-val dos testes t dos coef
+  SE &lt;- vector() # Erro quadrático dos coef
+
+  for(i in 1:ncol(X)) {
+    T_0[i] &lt;- abs(beta[i]/(sqrt(sigma_chapeu*C[i,i])))
+    p_val_t[i] &lt;- pt(T_0[i], df=(n-p), lower.tail=F)*2
+    SE[i] &lt;- sqrt(sigma_chapeu*C[i,i])
+  }
+  
+  RSE &lt;- sqrt(MS_E) # Erro resídual padrão
+  
+  # cria os data-frames que serão impressos pela função
+  rownames(beta)[1] &lt;- &quot;Intercessão&quot;
+  coeficientes &lt;- as.data.frame(rownames(beta))
+  coeficientes &lt;- cbind(coeficientes,beta, SE, T_0, p_val_t)
+  colnames(coeficientes) &lt;-c(&quot;Variável&quot;, &quot;Valor&quot;, &quot;Err. Padr.&quot;, &quot;t&quot;, &quot;p-val&quot;)
+  
+  # Imprime o sumário
+  cat(&quot;\nResíduos:\n&quot;)
+  prmatrix(t(quantile(resid)), rowlab=rep(&quot;&quot;, nrow(t(quantile(resid)))))
+  cat(&quot;\n&quot;)
+  prmatrix(coeficientes, rowlab=rep(&quot;&quot;, nrow(coeficientes)), quote = F)
+  
+  cat(&quot;\nErro padrão residual:&quot;, RSE, &quot;com&quot;, (n-p), &quot;graus de liberdade.&quot;)
+  cat(&quot;\nR-quadrado:&quot;, R2, &quot;e R-quadrado ajustado&quot;, R2_ajust, &quot;.&quot;)
+  cat(&quot;\nEstatística-F:&quot;, F_0[1,1], &quot;com&quot;, (n-p), &quot;e&quot;,(k), &quot;GL, p-val:&quot;, p_val, &quot;.\n&quot;)
+}</code></pre>
+</div>
+<p>Agora podemos avaliar nossa regressão com essa nova função.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Resíduos:
+         0%        25%         50%       75%      100%
+ -0.4101143 -0.1576744 -0.02816167 0.1015507 0.4553944
+
+ Variável     Valor         Err. Padr.   t         p-val       
+ Intercessão  -3.482259e+03 8.904204e+02 3.9108029 0.0035604037
+ GNP.deflator  1.506187e-02 8.491493e-02 0.1773760 0.8631408602
+ GNP          -3.581918e-02 3.349101e-02 1.0695163 0.3126810729
+ Unemployed   -2.020230e-02 4.883997e-03 4.1364273 0.0025350918
+ Armed.Forces -1.033227e-02 2.142742e-03 4.8219853 0.0009443668
+ Population   -5.110411e-02 2.260732e-01 0.2260512 0.8262117909
+ Year          1.829151e+00 4.554785e-01 4.0158898 0.0030368034
+
+Erro padrão residual: 0.3048541 com 9 graus de liberdade.
+R-quadrado: 0.9954772 e R-quadrado ajustado 0.992465 .
+Estatística-F: 330.2848 com 9 e 6 GL, p-val: 4.98407e-10 .</code></pre>
+</div>
+<h2 id="adequação-do-modelo-com-base-nos-resultados">Adequação do modelo com base nos Resultados</h2>
+<p>Agora são selecionadas features com base no ajuste feito, pensando em diminuir a colinearidade e fazer com que os coeficiêntes sejam todos representativos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+X2 &lt;- data.matrix(cbind(longley[3:4], longley[6]))
+X2 &lt;- cbind(rep(1,nrow(X2)),X2)
+y2 &lt;- data.matrix(longley[7])
+beta2 &lt;- solve(t(X2) %*% X2) %*% t(X2) %*% y2
+resid2 &lt;- (y2 - X2 %*% beta2)
+sumario(X2, y2)</code></pre>
+<pre><code>
+Resíduos:
+         0%        25%        50%       75%      100%
+ -0.5728523 -0.1198888 0.04087274 0.1397908 0.7530347
+
+ Variável     Valor         Err. Padr.   t         p-val       
+ Intercessão  -1.797221e+03 68.641552629 26.182699 5.891622e-12
+ Unemployed   -1.469671e-02  0.001671374  8.793189 1.410344e-06
+ Armed.Forces -7.722815e-03  0.001837150  4.203694 1.223839e-03
+ Year          9.563798e-01  0.035524822 26.921453 4.241120e-12
+
+Erro padrão residual: 0.3320844 com 12 graus de liberdade.
+R-quadrado: 0.9928471 e R-quadrado ajustado 0.9910588 .
+Estatística-F: 555.2091 com 12 e 3 GL, p-val: 3.915928e-13 .</code></pre>
+</div>
+<p>Assim todos os coeficiêntes tem p-valor menor que 0,05 e paraa ANOVA também.</p>
+<h2 id="gerando-previsões">Gerando previsões</h2>
+<p>As previsões são geradas com a equação a seguir:</p>
+<p><span class="math display">\[ \boldsymbol{\hat{y}} = \boldsymbol{X\hat{\beta}} \]</span></p>
+<p>Vamos gerar previsões e visualizá-as com relação à variável <code>Year</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+y_hat &lt;- X2 %*% beta2 # previsões
+y_hat &lt;- cbind(as.data.frame(y_hat), longley$Year, longley$Employed) # criando um dataframe com as previsões, o valor real e o ano
+colnames(y_hat) &lt;-c(&quot;y_hat&quot;, &quot;Year&quot;, &quot;y&quot;) # renomeando as colunas corretamente
+
+# plot
+ggplot() +
+  geom_line(data=y_hat, aes(Year, y, group=&quot;Valor&quot;, col=&quot;Valor Real&quot;), size=1.3) +
+  geom_point(data=y_hat, aes(Year, y_hat, group=&quot;Previsão&quot;, col=&quot;Previsão&quot;), size=1.5) +
+  ylab(&quot;Employed&quot;) +
+  xlab(&quot;Year&quot;) +
+  theme(legend.title=element_blank()) +
+  scale_color_manual(values=c(&quot;Black&quot;, &quot;Red&quot;))</code></pre>
+<p><img src="regressao-multipla-longley_files/figure-html5/unnamed-chunk-18-1.png" width="624" /></p>
+</div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<div class="distill-site-nav distill-site-footer">
+  <p>Feito utilizando o <a href="https://rstudio.github.io/distill/"> Distill para RMarkdown</a></p>
+</div>
+<!--/radix_placeholder_navigation_after_body-->
+
+
+</body>
+
+</html>

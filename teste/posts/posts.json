@@ -1,5 +1,20 @@
 [
   {
+    "path": "posts/2020-03-27-regressao-multipla-longley/",
+    "title": "Regressão Múltipla no Dataset Longley",
+    "description": "Criando um modelo de Regressão Linear Múltipla do zero no dataset Longley e verificando as premissas do modelo.",
+    "author": [
+      {
+        "name": "José Larcher",
+        "url": "https://jhklarcher.github.io"
+      }
+    ],
+    "date": "2020-03-27",
+    "categories": [],
+    "preview": "posts/2020-03-27-regressao-multipla-longley/regressao-multipla-longley_files/figure-html5/unnamed-chunk-4-1.png",
+    "last_modified": "2020-03-27T14:43:15-03:00"
+  },
+  {
     "path": "posts/2020-03-26-food-consumption-and-carbon-footprint-in-2018/",
     "title": "Food Consumption and Carbon Footprint in 2018",
     "description": "A short description of the post.",
@@ -12,7 +27,7 @@
     "date": "2020-03-26",
     "categories": [],
     "preview": "posts/2020-03-26-food-consumption-and-carbon-footprint-in-2018/food-consumption-and-carbon-footprint-in-2018_files/figure-html5/unnamed-chunk-5-1.png",
-    "last_modified": "2020-03-26T17:59:00-03:00"
+    "last_modified": "2020-03-27T11:19:33-03:00"
   },
   {
     "path": "posts/welcome/",
