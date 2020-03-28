@@ -50,7 +50,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["regressao-multipla-longley_files/figure-html5/unnamed-chunk-18-1.png","regressao-multipla-longley_files/figure-html5/unnamed-chunk-4-1.png","regressao-multipla-longley_files/figure-html5/unnamed-chunk-5-1.png","regressao-multipla-longley_files/figure-html5/unnamed-chunk-8-1.png","regresso-mltipla-longley_files/bowser-1.9.3/bowser.min.js","regresso-mltipla-longley_files/distill-2.2.21/template.v2.js","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-18-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-19-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-20-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-21-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-3-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-4-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-5-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-7-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-8-1.png","regresso-mltipla-longley_files/figure-html5/unnamed-chunk-9-1.png","regresso-mltipla-longley_files/jquery-1.11.3/jquery.min.js","regresso-mltipla-longley_files/webcomponents-2.0.0/webcomponents.js","regresso-mltipla-longley.html"]}
+  {"type":"character","attributes":{},"value":["regressao-multipla-longley_files/bowser-1.9.3/bowser.min.js","regressao-multipla-longley_files/distill-2.2.21/template.v2.js","regressao-multipla-longley_files/figure-html5/unnamed-chunk-17-1.png","regressao-multipla-longley_files/figure-html5/unnamed-chunk-18-1.png","regressao-multipla-longley_files/figure-html5/unnamed-chunk-4-1.png","regressao-multipla-longley_files/figure-html5/unnamed-chunk-5-1.png","regressao-multipla-longley_files/figure-html5/unnamed-chunk-8-1.png","regressao-multipla-longley_files/jquery-1.11.3/jquery.min.js","regressao-multipla-longley_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 
@@ -1270,6 +1270,13 @@ document.addEventListener('DOMContentLoaded', function() {
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-160722608-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-160722608-1');
+</script>
 <!--/radix_placeholder_site_in_header-->
 
 
@@ -1296,7 +1303,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="nav-right">
 <a href="https://www.linkedin.com/in/jhlarcher">LinkedIn</a>
 <a href="https://github.com/jhklarcher">GitHub</a>
-<a href="../../about.html">CV</a>
+<a href="../..//files/CV_JoseLarcher.pdf">CV</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -1551,7 +1558,7 @@ lines(seq(-1, 1, length=100), dnorm(seq(-1, 1, length=100), mean(resid), sd(resi
 <p><img src="regressao-multipla-longley_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
 </div>
 <h3 id="testes-para-normalidade">Testes para normalidade</h3>
-<p>Existem testes para avaliar a normalidade, o primeiro é o de Shapiro-Wilk:</p>
+<p>Existem testes para avaliar a normalidade, o primeiro qeu vamos utilizar é o de Shapiro-Wilk:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 shapiro.test(resid)</code></pre>
@@ -1575,19 +1582,6 @@ D = 0.1723, p-value = 0.6672
 alternative hypothesis: two-sided</code></pre>
 </div>
 <p>O p-valor é 0.6672, então a hipótese de a distribuição ser nomal é aceita.</p>
-<h3 id="teste-para-a-colinearidade-variance-inflation-factor">Teste para a colinearidade (Variance inflation factor)</h3>
-<p>O teste <em>Variance inflation factor</em> avalia a multicolinearidade. Com valores de <span class="math inline">\(VIF&gt;5\)</span> para a maior parte das variáveis, elas apresentam alta colinearidade entre sí.</p>
-<div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-library(car)
-vif(modelo1)</code></pre>
-<pre><code>
-GNP.deflator          GNP   Unemployed Armed.Forces   Population 
-   135.53244   1788.51348     33.61889      3.58893    399.15102 
-        Year 
-   758.98060 </code></pre>
-</div>
-<p>Então essas variáveis apresentam alta colinearidade entre sí.</p>
 <h3 id="análise-de-variância-anova">Análise de variância (ANOVA)</h3>
 <p>A <a href="https://pt.wikipedia.org/wiki/An%C3%A1lise_de_vari%C3%A2ncia">análise da variância</a> permite avaliar se a regressão é representativa.</p>
 <p>As hipóteses são:</p>
@@ -1771,7 +1765,7 @@ ggplot() +
   xlab(&quot;Year&quot;) +
   theme(legend.title=element_blank()) +
   scale_color_manual(values=c(&quot;Black&quot;, &quot;Red&quot;))</code></pre>
-<p><img src="regressao-multipla-longley_files/figure-html5/unnamed-chunk-18-1.png" width="624" /></p>
+<p><img src="regressao-multipla-longley_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
 </div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
