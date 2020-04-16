@@ -1,5 +1,20 @@
 [
   {
+    "path": "posts/2020-04-16-covid-19/",
+    "title": "COVID-19",
+    "description": "Gráficos do avanço do SARS-CoV-2.",
+    "author": [
+      {
+        "name": "José Larcher",
+        "url": "https://jhklarcher.github.io/"
+      }
+    ],
+    "date": "2020-04-16",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-04-16T17:28:36-03:00"
+  },
+  {
     "path": "posts/2020-03-26-food-consumption-and-carbon-footprint-in-2018/",
     "title": "Consumo e pegada de carbono de alimentos em 2018 #tidytuesday",
     "description": "Análise do dataset \"Food Consumption and CO2 Emissions\" disponibilizado no repositório do TidyTuesday",
