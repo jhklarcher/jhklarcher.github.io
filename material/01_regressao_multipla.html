@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Regressão Linear Múltipla</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Material</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="/">Home</a>
+</li>
+<li>
+  <a href="/mais/">Mais</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Regressão Linear Múltipla</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#equações"><span class="toc-section-number">1</span> Equações</a></li>
+<li><a href="#estimador-para-a-variância-do-erro"><span class="toc-section-number">2</span> Estimador para a variância do Erro</a></li>
+<li><a href="#testes-de-hipótese-para-a-regressão"><span class="toc-section-number">3</span> Testes de Hipótese para a Regressão</a><ul>
+<li><a href="#teste-para-a-significância-da-regressão-anova"><span class="toc-section-number">3.1</span> Teste para a significância da regressão (ANOVA)</a></li>
+<li><a href="#r²-e-r²-ajustado"><span class="toc-section-number">3.2</span> R² e R² ajustado</a></li>
+<li><a href="#teste-para-os-coeficientes-individualmente"><span class="toc-section-number">3.3</span> Teste para os coeficientes individualmente</a></li>
+</ul></li>
+<li><a href="#premissas-do-modelo"><span class="toc-section-number">4</span> Premissas do Modelo</a></li>
+<li><a href="#gerando-previsões"><span class="toc-section-number">5</span> Gerando Previsões</a></li>
+<li><a href="#pontos-influêntes-no-modelo"><span class="toc-section-number">6</span> Pontos Influêntes no Modelo</a></li>
+</ul>
+</div>
+
+<div id="equações" class="section level1">
+<h1><span class="header-section-number">1</span> Equações</h1>
+<p>A equação geral para o modelo de regressão linear múltipla é: <span class="math display">\[ y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_k x_{ik} + \epsilon_i  \quad\quad\quad\quad i = 1, 2, ..., n\]</span> Onde os valores de <span class="math inline">\(\beta_k\)</span> são os coeficientes da regressão para cada variável e <span class="math inline">\(\beta_0\)</span> é o coeficiente de Intersecção no eixo da variável de interesse. <span class="math inline">\(k\)</span> é o numero de variáveis de regressão e <span class="math inline">\(n\)</span> é o número de observações. <span class="math inline">\(x_{ik}\)</span> é a i-ésima observação da k-ésima variável de regressão. <span class="math inline">\(\epsilon_i\)</span> é o erro do modelo para a observação i.<br />
+Em forma matricial, pode-se escrever: <span class="math display">\[ \boldsymbol{y=X\beta +\epsilon}  \]</span> Onde:</p>
+<p><span class="math display">\[ \boldsymbol{y} = \begin{bmatrix} y_{ 1 } \\ y_{ 2 } \\ \vdots  \\ y_{ n } \end{bmatrix} 
+\quad 
+\boldsymbol{X}=\begin{bmatrix} 1 &amp; x_{ 11 } &amp; x_{ 12 } &amp; \cdots  &amp; x_{ 1k } \\ 1 &amp; x_{ 11 } &amp; x_{ 11 } &amp; \cdots  &amp; x_{ 2k } \\ \vdots  &amp; \vdots  &amp; \vdots  &amp; \ddots  &amp; \vdots  \\ 1 &amp; x_{ 11 } &amp; x_{ 11 } &amp; \cdots  &amp; x_{ nk } \end{bmatrix} 
+\quad
+\boldsymbol{ \beta  }=\begin{bmatrix} \beta _{ 0 } \\ \beta _{ 1 } \\ \vdots  \\ \beta _{ k } \end{bmatrix}
+\quad
+\boldsymbol{ \epsilon  }=\begin{bmatrix} \epsilon _{ 1 } \\ \epsilon _{ 2 } \\ \vdots  \\ \epsilon _{ n } \end{bmatrix}
+\]</span></p>
+<p><span class="math inline">\(n\)</span>: número de linhas da matriz <strong>X</strong></p>
+<p><span class="math inline">\(p\)</span>: número de colunas da matriz <strong>X</strong></p>
+<p><span class="math inline">\(k=p-1\)</span></p>
+<p>Minimizando o vetor de erro com o método dos mínimos quadrados, encontra-se o melhor estimador d para os coeficientes: o vetor <span class="math inline">\(\hat{\beta}\)</span>. <span class="math inline">\(\hat{\beta}\)</span> pode ser escrito como:</p>
+<p><span class="math display">\[ \boldsymbol{\hat{\beta}} = (\boldsymbol{X}&#39;\boldsymbol{X})^{-1}\boldsymbol{X}&#39;\boldsymbol{y}  \]</span> O modelo ajustado será:</p>
+<p><span class="math display">\[ \boldsymbol{\hat{y}}=\boldsymbol{X \hat{\beta}}  \]</span></p>
+<p>A diferença entre o valor ajustado e o valor da observação é chamado de resíduo e pode ser descrito como:</p>
+<p><span class="math display">\[\boldsymbol{e} = \boldsymbol{y}-\boldsymbol{\hat{y}} \]</span></p>
+</div>
+<div id="estimador-para-a-variância-do-erro" class="section level1">
+<h1><span class="header-section-number">2</span> Estimador para a variância do Erro</h1>
+<p><span class="math display">\[ \hat{\sigma}^2 = \frac{ \sum_{ i=1}^{n}e_{i}^{2} }{ n-p } = \frac{ SS_E }{n-p}  \]</span></p>
+<p><span class="math inline">\(SS_E\)</span>: soma dos quadrados dos resíduos.</p>
+<p><span class="math inline">\((n-p)\)</span>: graus de liberdade dos resíduos.</p>
+</div>
+<div id="testes-de-hipótese-para-a-regressão" class="section level1">
+<h1><span class="header-section-number">3</span> Testes de Hipótese para a Regressão</h1>
+<div id="teste-para-a-significância-da-regressão-anova" class="section level2">
+<h2><span class="header-section-number">3.1</span> Teste para a significância da regressão (ANOVA)</h2>
+<p><span class="math inline">\(H_0: \beta_1 = \beta_2 = ... = \beta_k = 0\)</span></p>
+<p><span class="math inline">\(H_1: \beta_j \ne 0\)</span>, para pelo menos um valor de j.</p>
+<p>As estatística do teste é:</p>
+<p><span class="math display">\[ F_0 = \frac{SS_R / k}{SS_E / (n-p)} = \frac{MS_R}{MS_E} \]</span></p>
+<p><span class="math display">\[ SS_E = \boldsymbol{e}&#39; \boldsymbol{e} = \boldsymbol{y}&#39;\boldsymbol{y} - \boldsymbol{\hat{\beta}}&#39;\boldsymbol{X}&#39;\boldsymbol{y} \]</span></p>
+<p><span class="math display">\[ SS_R = \boldsymbol{\hat{\beta}}&#39;\boldsymbol{X}&#39;\boldsymbol{y} - \frac{ \left( \sum_{i=1}^{n} y_i \right)^2 }{n} \]</span></p>
+<p><span class="math display">\[ SS_T = SS_R+SS_E = \boldsymbol{y}&#39;\boldsymbol{y} - \frac{ \left( \sum_{i=1}^{n} y_i \right)^2 }{n} \]</span></p>
+<p>Se <span class="math inline">\(f_0 &gt;f_{\alpha, k, n-p}\)</span>, <span class="math inline">\(H_0\)</span> deve ser regeitada.</p>
+<p><span class="math inline">\(f_{\alpha, k, n-p}\)</span> pode ser consultado em alguma tabela ou software. Também pode-se encontrar o p-valor para a estatística F.</p>
+</div>
+<div id="r²-e-r²-ajustado" class="section level2">
+<h2><span class="header-section-number">3.2</span> R² e R² ajustado</h2>
+<p><span class="math display">\[ R^2 = \frac{SS_R}{SS_T} = 1-\frac{SS_E}{SS_T} \]</span></p>
+<p><span class="math display">\[ R^2_{aj} = 1-\frac{SS_E/(n-p)}{SS_T/(n-1)} \]</span></p>
+</div>
+<div id="teste-para-os-coeficientes-individualmente" class="section level2">
+<h2><span class="header-section-number">3.3</span> Teste para os coeficientes individualmente</h2>
+<p><span class="math inline">\(H_0: \beta_j=0\)</span></p>
+<p><span class="math inline">\(H_1: \beta_j \ne 0\)</span></p>
+<p>Estatística do teste:</p>
+<p><span class="math display">\[ T_0 = \frac{ \hat{\beta_j} }{\sqrt{ \hat{\sigma}^2 C_{jj}}} =  \frac{ \hat{\beta_j} }{se(\hat{\beta_j})} \]</span></p>
+<p>Onde <span class="math inline">\(C = ( \boldsymbol{X}&#39; \boldsymbol{X} )^{-1}\)</span>, então <span class="math inline">\(C_{jj}\)</span> é o elemento da diagonal de <span class="math inline">\(\boldsymbol{C}\)</span>. <span class="math inline">\(se(\hat{\beta_j})\)</span> é o erro padrão do coeficiente de <span class="math inline">\(\hat{\beta_j}\)</span>.</p>
+<p><span class="math inline">\(H_0\)</span> é rejeitada se <span class="math inline">\(|t_0|&gt;t_{\alpha/2, n-p}\)</span>. Também pode ser utilizado o p-valor para a estatística t.</p>
+</div>
+</div>
+<div id="premissas-do-modelo" class="section level1">
+<h1><span class="header-section-number">4</span> Premissas do Modelo</h1>
+<p>O modelo de gressão linear pelo método dos mínimos quadrados tem como premissa a normalidade dos resíduos. Essa premissa pode ser verificada por método gráfico ou por testes de normalidade, como Shapiro-Wilk e Kolmogorov-Smirnov (comparando ocm distribuição normal).</p>
+</div>
+<div id="gerando-previsões" class="section level1">
+<h1><span class="header-section-number">5</span> Gerando Previsões</h1>
+<p>Assumindo que <span class="math inline">\(\boldsymbol{X_0}\)</span> é uma matriz com novas observações, a correspondente <span class="math inline">\(\boldsymbol{y_0}\)</span> será dada por: <span class="math display">\[ \boldsymbol{y_0} = \boldsymbol{X_0}\boldsymbol{\hat{\beta}} \]</span></p>
+</div>
+<div id="pontos-influêntes-no-modelo" class="section level1">
+<h1><span class="header-section-number">6</span> Pontos Influêntes no Modelo</h1>
+<p>Para se avaliar os pontos mais influentes no modelo se utiliza a distância de Cook. Para tal utiliza-se:</p>
+<p><span class="math display">\[ \boldsymbol{H} = \boldsymbol{X}(\boldsymbol{X}&#39;\boldsymbol{X})^{-1} \boldsymbol{X}&#39; \]</span></p>
+<p><span class="math inline">\(h_{ii}\)</span> representa os elementos da diagonal de <span class="math inline">\(H\)</span>.</p>
+<p>O resíduo estudentizado <span class="math inline">\(r_i\)</span> é:</p>
+<p><span class="math display">\[ r_i = \frac{ e_i }{ \sqrt{ \hat{\sigma}^2 (1 - h_{ii}) } }, \quad i = 1,2,...,n \]</span></p>
+<p>Por fim, a distância de Cook é:</p>
+<p><span class="math display">\[ D_i = \frac{ r_i^2 }{ p } \cdot \frac{ h_{ii} }{ 1-h_{ii} }  \]</span></p>
+<p>Quando <span class="math inline">\(D_i &gt; 1\)</span> oponto referente é considerado influente. Dependendo da situação essas observações podem ou não ser retiradas do modelo.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
