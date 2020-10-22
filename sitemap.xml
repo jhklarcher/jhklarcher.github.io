@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-    <loc>https://jhklarcher.github.io/projetos/index.html</loc>
+    <loc>https://jhklarcher.github.io/index.html</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -14,85 +14,7 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://jhklarcher.github.io/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/regressao_multipla/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/pendulo_simples/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/detector_fake_news/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/hanoi_towers/solucao/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/pendulo_duplo/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/hanoi_towers/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/bitcoin/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/sleep/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/acp/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/food_footprint/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/material/01_regressao_multipla/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/material/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/projects/detector_fake_news/sobre/index.html</loc>
+    <loc>https://jhklarcher.github.io/projetos/index.html</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
