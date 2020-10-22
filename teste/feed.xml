@@ -3,22 +3,22 @@
   <title>jhkl</title>
   <description><![CDATA[José Henrique Larcher
 ]]></description>
-  <link>https://jhklarcher.github.io/</link>
-  <atom:link href="https://jhklarcher.github.io/feed.xml" rel="self" type="application/rss+xml" />
+  <link>https://jhklarcher.github.io/teste/</link>
+  <atom:link href="https://jhklarcher.github.io/teste/feed.xml" rel="self" type="application/rss+xml" />
   <item>
     <title>Projetos</title>
-    <link>https://jhklarcher.github.io/projetos/index.html</link>
+    <link>https://jhklarcher.github.io/teste/projetos/index.html</link>
     <description><![CDATA[Projetos...
-<br><a href="https://jhklarcher.github.io/projetos/index.html">Read more</a>]]></description>
-    <guid>https://jhklarcher.github.io/projetos/index.html</guid>
+<br><a href="https://jhklarcher.github.io/teste/projetos/index.html">Read more</a>]]></description>
+    <guid>https://jhklarcher.github.io/teste/projetos/index.html</guid>
     <pubDate>Thu, 22 Oct 2020 00:00:00 UT</pubDate>
   </item>
   <item>
     <title>Projetos</title>
-    <link>https://jhklarcher.github.io/teste/index.html</link>
+    <link>https://jhklarcher.github.io/teste/teste/index.html</link>
     <description><![CDATA[Projetos...
-<br><a href="https://jhklarcher.github.io/teste/index.html">Read more</a>]]></description>
-    <guid>https://jhklarcher.github.io/teste/index.html</guid>
+<br><a href="https://jhklarcher.github.io/teste/teste/index.html">Read more</a>]]></description>
+    <guid>https://jhklarcher.github.io/teste/teste/index.html</guid>
     <pubDate>Thu, 22 Oct 2020 00:00:00 UT</pubDate>
   </item>
 </channel>

@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-    <loc>https://jhklarcher.github.io/projetos/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/index.html</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://jhklarcher.github.io/404/index.html</loc>
+    <loc>https://jhklarcher.github.io/teste/projetos/index.html</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://jhklarcher.github.io/teste/index.html</loc>
+    <lastmod>2020-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://jhklarcher.github.io/teste/404/index.html</loc>
+    <lastmod>2020-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://jhklarcher.github.io/teste/teste/index.html</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
