@@ -1,4 +1,0 @@
-Sitemap: https://jhklarcher.github.io/sitemap.xml
-
-User-agent: *
-Disallow:
