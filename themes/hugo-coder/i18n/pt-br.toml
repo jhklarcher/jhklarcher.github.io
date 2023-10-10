@@ -34,7 +34,7 @@ other = "Você pode voltar para a <a href=\"{{ . }}\">página inicial</a>."
 other = "Licensed under"
 
 [powered_by]
-other = "Promovido por"
+other = "Criado com"
 
 [see_also]
 other = "Veja também em"
